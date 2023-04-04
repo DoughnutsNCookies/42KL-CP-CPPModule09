@@ -6,7 +6,7 @@
 #    By: schuah <schuah@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 10:52:13 by schuah            #+#    #+#              #
-#    Updated: 2023/04/04 21:07:56 by schuah           ###   ########.fr        #
+#    Updated: 2023/04/04 22:57:43 by schuah           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CXX			=	c++
 RM			=	rm -rf
 MKDIR		=	mkdir -p
 CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -pedantic
+# CXXFLAGS	=	-fsanitize=address -g3
 SRCS_FILES	=	main
 SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(SRCS_FILES)))
 OBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
