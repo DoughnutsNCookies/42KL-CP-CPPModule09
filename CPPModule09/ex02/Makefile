@@ -6,11 +6,11 @@
 #    By: schuah <schuah@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 10:52:13 by schuah            #+#    #+#              #
-#    Updated: 2023/04/04 21:09:04 by schuah           ###   ########.fr        #
+#    Updated: 2023/04/04 21:07:56 by schuah           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	RPN
+NAME		=	PmergeMe
 CXX			=	c++
 RM			=	rm -rf
 MKDIR		=	mkdir -p
