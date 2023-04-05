@@ -6,7 +6,7 @@
 /*   By: schuah <schuah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:09:42 by schuah            #+#    #+#             */
-/*   Updated: 2023/04/04 23:48:45 by schuah           ###   ########.fr       */
+/*   Updated: 2023/04/05 17:30:28 by schuah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <deque>
 
 template <class Container>
-void	insertionSort(Container &vec)
+static void	insertionSort(Container &vec)
 {
 	for (size_t i = 1; i < vec.size(); i++)
 	{
@@ -30,7 +30,7 @@ void	insertionSort(Container &vec)
 }
 
 template <template <typename, typename> class Container>
-std::chrono::microseconds	mergeInsertionSort(Container<int, std::allocator<int> > &vec)
+static std::chrono::microseconds	mergeInsertionSort(Container<int, std::allocator<int> > &vec)
 {
 	std::chrono::steady_clock::time_point						begin = std::chrono::steady_clock::now();
 	typedef Container<int, std::allocator<int> >				ThisContainer;
@@ -51,7 +51,7 @@ std::chrono::microseconds	mergeInsertionSort(Container<int, std::allocator<int> 
 	return (std::chrono::duration_cast<std::chrono::microseconds>(end - begin));
 }
 
-int	printExit(std::string str)
+static int	printExit(std::string str)
 {
 	std::cout << str << std::endl;
 	return (EXIT_FAILURE);
