@@ -15,13 +15,19 @@
 #include <stack>
 #include <string>
 
+int printAndReturn(int status, int result = 0)
+{
+	if (status == 0)
+		std::cout << result << std::endl;
+	else
+		std::cout << "Error" << std::endl;
+	return status;
+}
+
 int main(int ac, char **av)
 {
 	if (ac != 2)
-	{
-		std::cout << av[0] << " [expression]" << std::endl;
-		return (1);
-	}
+		return (printAndReturn(1));
 
 	std::stack<int>		stack;
 	std::istringstream	iss(av[1]);
@@ -52,10 +58,8 @@ int main(int ac, char **av)
 				stack.push(token[0] - 48);
 			}
 		} catch (std::exception &e) {
-			std::cout << "Error" << std::endl;
-			return (0);
+			return (printAndReturn(1));
 		}
 	}
-	std::cout << stack.size() != 1 ? "Error" : stack.top() << std::endl;
-	return (0);
+	return (printAndReturn(stack.size() != 1, stack.top()));
 }
