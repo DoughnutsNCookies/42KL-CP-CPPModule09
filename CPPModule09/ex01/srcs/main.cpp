@@ -13,6 +13,7 @@
 #include <iostream>
 #include <sstream>
 #include <stack>
+#include <string>
 
 int main(int ac, char **av)
 {
@@ -22,36 +23,39 @@ int main(int ac, char **av)
 		return (1);
 	}
 
-	std::stack<char> stack;
-	std::stringstream ss(av[1]);
-	int error = 0;
-	char token;
-	while (ss >> token && error == 0)
+	std::stack<int>		stack;
+	std::istringstream	iss(av[1]);
+	std::string			ops = "+-*/";
+	std::string			token;
+	while (iss >> token)
 	{
-		if (stack.size() < 2)
-			(token >= '0' && token <= '9') ? stack.push(token) : (void)(error = 1);
-		else
-		{
-			std::string ops = "+-*/";
-			if (ops.find(token) == std::string::npos)
-				error = 1;
-			else
+		try {
+			if (ops.find(token) != std::string::npos)
 			{
-				int b = stack.top() - '0';
+				if (stack.size() < 2)
+					throw std::exception();
+				int b = stack.top();
 				stack.pop();
-				int a = stack.top() - '0';
+				int a = stack.top();
 				stack.pop();
-				if (token == '+')
-					stack.push(a + b + '0');
-				else if (token == '-')
-					stack.push(a - b + '0');
-				else if (token == '*')
-					stack.push(a * b + '0');
-				else if (token == '/')
-					b == 0 ? (void)(error = 1) : stack.push(a / b + '0');
+				if (token == "+")
+					stack.push(a + b);
+				else if (token == "-")
+					stack.push(a - b);
+				else if (token == "*")
+					stack.push(a * b);
+				else if (token == "/")
+					stack.push(a / b);
+			} else {
+				if (token[0] < '0' || token[0] > '9' || token[1] != '\0')
+					throw std::exception();
+				stack.push(token[0] - 48);
 			}
+		} catch (std::exception &e) {
+			std::cout << "Error" << std::endl;
+			return (0);
 		}
 	}
-	std::cout << ((error || stack.size() != 1) ? "Error" : std::to_string(stack.top() - '0')) << std::endl;
+	std::cout << stack.size() != 1 ? "Error" : stack.top() << std::endl;
 	return (0);
 }
