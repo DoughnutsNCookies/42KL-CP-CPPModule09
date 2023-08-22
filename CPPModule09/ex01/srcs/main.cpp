@@ -50,8 +50,11 @@ int main(int ac, char **av)
 					stack.push(a - b);
 				else if (token == "*")
 					stack.push(a * b);
-				else if (token == "/")
+				else if (token == "/") {
+					if (b == 0)
+						throw std::exception();
 					stack.push(a / b);
+				}
 			} else {
 				if (token[0] < '0' || token[0] > '9' || token[1] != '\0')
 					throw std::exception();
